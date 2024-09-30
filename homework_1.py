@@ -6,11 +6,14 @@ def get_days_from_today(date):
         new_date = datetime.strptime(date, "%Y-%m-%d").date()
         today = datetime.today()
         # обраховування кількості днів
-        number_of_days = today.toordinal() - new_date.toordinal()
+        number_of_days =  new_date.toordinal() - today.toordinal()
         return number_of_days
     # обробка виключення
     except ValueError:
         return "Incorrect date input"
     
-
-print(get_days_from_today("23"))
+# перевіряємо
+if __name__ == "__main__":
+    print(get_days_from_today("2024-11-22"))
+    print(get_days_from_today("2023-11-22"))
+    print(get_days_from_today("2024/11-22"))
