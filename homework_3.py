@@ -4,21 +4,13 @@ import re
 def normalize_phone(phone_number):
     # паттерн який видаляє усе окрім цифр
     pattern =r"[^0-9]"
-    replacement = ""
-    # порожній список в якому будуть відкориговані номери
-    correct_phone_numbers = []
-    # проходимось по кожному номеру у списку
-    for number in phone_number:
-        # чистимо номер від зайвого
-        new_number = re.sub(pattern, replacement, number)
-        # перевіріємо чи номер починається із 38
-        if new_number[:2] != "38":
-            new_number = "38" + new_number
-        # додаємо + перед кожним номером
-        new_number = "+" + new_number
-        # додаємо відформатований номер до нового списку
-        correct_phone_numbers.append(new_number)
-    return correct_phone_numbers
+    replacement = ""  
+    # чистимо номер від зайвого
+    new_number = re.sub(pattern, replacement, phone_number)
+    # перевіріємо чи номер починається із 38
+    if new_number[:2] != "38":
+        new_number = "38" + new_number
+    return "+" + new_number
         
 # перевіряємо функцію
 if __name__ == "__main__":
@@ -33,4 +25,5 @@ if __name__ == "__main__":
         "38050-111-22-22",
         "38050 111 22 11   ",
     ]
-    print(normalize_phone(raw_numbers))
+    for number in raw_numbers:
+        print(normalize_phone(number))
